@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MvcApplicationLab2.Models.Accounts>
+
+<style>
+   table {
+    width:50%;
+    text-align: left;
+    border-collapse: collapse; 
+   }
+   td, th {
+    padding: 3px; 
+    border: 1px solid #000; 
+   }
+   th {
+    background: #afd792; 
+    color: #333;  
+   }
+ </style>
+
+<script>
+    var row = undefined;
+    function changeColor(element) {
+        if (!row) {
+            row = element;
+            row.style.backgroundColor = 'red';
+            var id = document.getElementById("link").href = "Home/Invoices/" + element.id;
+        }
+        else
+        {
+            row.style.backgroundColor = 'white';
+            row = element;
+            row.style.backgroundColor = 'red';
+            var id = document.getElementById("link").href = "Home/Invoices/" + element.id;
+        }
+    }
+</script>
+
+<table onclick ="ontableClick(this)">
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Invoice Count
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr id="@item.Id" onclick ="changeColor(this)">
+        <td>
+            @item.Id
+        </td>
+        <td>
+            @item.Name
+        </td>
+        <td>
+            @item.Invoices.Count()
+        </td>
+    </tr>
+}
+</table>
+
+<p>
+    <a id="link" href="#">Account Invoices</a>
+</p>
+
+@Html.Partial("_CreateOrUpdateForm")
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

@@ -1,0 +1,16 @@
+﻿@using (Html.BeginForm()) {
+    <fieldset>
+        <legend>Accounts</legend>
+
+        <div class="editor-label">
+            @Html.Label("Name")
+        </div>
+        <div class="editor-field">
+            @Html.Editor("Name")
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
